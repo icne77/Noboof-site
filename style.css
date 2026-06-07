@@ -108,12 +108,12 @@ nav {
   padding-top: 18px;
 }
 
-.product-card img {
+.product-placeholder {
   width: 100%;
   aspect-ratio: 3 / 4;
-  object-fit: cover;
-  display: block;
   margin-bottom: 16px;
+  background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.08);
 }
 
 .product-card h4 {
@@ -142,6 +142,11 @@ nav {
   font-weight: 600;
 }
 
+.checkout-btn:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
 .coordinates {
   text-align: center;
   padding: 140px 10% 120px;
@@ -160,14 +165,29 @@ nav {
   font-size: .8rem;
 }
 
-footer {
+.site-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 42px 20px 34px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
   text-align: center;
-  padding: 50px 20px;
-  border-top: 1px solid rgba(255,255,255,.1);
-  color: #777;
-  letter-spacing: 3px;
+  background: #000;
+}
+
+.footer-brand {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 6px;
+  font-size: 0.85rem;
+  color: #f2f2f2;
+}
+
+.footer-location {
+  font-size: 0.68rem;
+  letter-spacing: 4px;
+  color: #9a9a9a;
   text-transform: uppercase;
-  font-size: .72rem;
 }
 
 .cart-drawer {
@@ -218,10 +238,11 @@ footer {
   padding-bottom: 16px;
 }
 
-.cart-item img {
+.cart-item-swatch {
   width: 80px;
   height: 100px;
-  object-fit: cover;
+  background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.08);
 }
 
 .cart-item h4 {
@@ -261,16 +282,6 @@ footer {
   margin-bottom: 16px;
 }
 
-#checkoutMount {
-  margin-top: 18px;
-}
-
-.embedded-checkout {
-  min-height: 520px;
-  background: #111;
-  border: 1px solid rgba(255,255,255,.1);
-}
-
 @media (max-width: 900px) {
   .hero h1 {
     font-size: 3.5rem;
@@ -292,20 +303,4 @@ footer {
   .coordinates h2 {
     font-size: 2.6rem;
   }
-}
-.product-placeholder,
-.cart-item-swatch {
-  width: 100%;
-  background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-  border: 1px solid rgba(255,255,255,.08);
-}
-
-.product-placeholder {
-  aspect-ratio: 3 / 4;
-  margin-bottom: 16px;
-}
-
-.cart-item-swatch {
-  width: 80px;
-  height: 100px;
 }
