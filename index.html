@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style.css" />
-  <script src="https://js.stripe.com/v3/"></script>
   <script defer src="./app.js"></script>
 </head>
 <body>
@@ -31,11 +30,6 @@
     <section class="section section-minimal" id="products">
       <div class="product-grid" id="productGrid"></div>
     </section>
-
-    <section class="coordinates">
-      <h2>NOBOOF</h2>
-      <p>LOS ANGELES • 34.0522° N • 118.2437° W</p>
-    </section>
   </main>
 
   <footer>
@@ -56,8 +50,7 @@
         <strong id="cartSubtotal">$0.00</strong>
       </div>
 
-      <button id="checkoutBtn" class="checkout-btn" type="button">Checkout</button>
-      <div id="checkoutMount"></div>
+      <button id="checkoutBtn" class="checkout-btn" type="button" disabled>Checkout Later</button>
     </div>
   </aside>
 </body>
