@@ -2,20 +2,17 @@ const products = [
   {
     id: "coat-001",
     name: "Tailored Wool Coat",
-    price: 89000,
-    image: "noboof-shirt.jpg"
+    price: 89000
   },
   {
     id: "tee-002",
     name: "Signature Heavy Tee",
-    price: 18000,
-    image: "noboof-shirt.jpg"
+    price: 18000
   },
   {
     id: "hoodie-003",
     name: "Monogram Hoodie",
-    price: 24000,
-    image: "noboof-shirt.jpg"
+    price: 24000
   }
 ];
 
@@ -28,8 +25,6 @@ const cartDrawer = document.getElementById("cartDrawer");
 const cartCount = document.getElementById("cartCount");
 const cartItems = document.getElementById("cartItems");
 const cartSubtotal = document.getElementById("cartSubtotal");
-const checkoutBtn = document.getElementById("checkoutBtn");
-const checkoutMount = document.getElementById("checkoutMount");
 
 function money(cents) {
   return new Intl.NumberFormat("en-US", {
@@ -41,7 +36,7 @@ function money(cents) {
 function renderProducts() {
   productGrid.innerHTML = products.map(product => `
     <article class="product-card">
-      <img src="${product.image}" alt="${product.name}">
+      <div class="product-placeholder"></div>
       <h4>${product.name}</h4>
       <p>${money(product.price)}</p>
       <button data-add="${product.id}" type="button">Add to bag</button>
@@ -79,7 +74,7 @@ function renderCart() {
 
   cartItems.innerHTML = cart.map(item => `
     <div class="cart-item">
-      <img src="${item.image}" alt="${item.name}">
+      <div class="cart-item-swatch"></div>
       <div>
         <h4>${item.name}</h4>
         <p>${money(item.price)}</p>
@@ -121,35 +116,6 @@ function closeCart() {
 
 cartToggle.addEventListener("click", openCart);
 cartClose.addEventListener("click", closeCart);
-
-checkoutBtn.addEventListener("click", async () => {
-  if (!cart.length) return;
-
-  checkoutBtn.disabled = true;
-  checkoutBtn.textContent = "Preparing checkout...";
-
-  const res = await fetch("/api/create-checkout", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ items: cart })
-  });
-
-  const data = await res.json();
-
-  checkoutMount.innerHTML = `<div id="embedded-checkout" class="embedded-checkout"></div>`;
-
-  const stripe = Stripe(window.STRIPE_PUBLISHABLE_KEY);
-  const embeddedCheckout = await stripe.initEmbeddedCheckout({
-    fetchClientSecret: async () => data.clientSecret
-  });
-
-  embeddedCheckout.mount("#embedded-checkout");
-
-  checkoutBtn.disabled = false;
-  checkoutBtn.textContent = "Checkout";
-});
 
 renderProducts();
 renderCart();
